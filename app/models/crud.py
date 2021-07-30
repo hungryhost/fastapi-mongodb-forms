@@ -8,7 +8,7 @@ async def retrieve_forms():
     forms_collection = await get_collection()
     forms = []
     async for form in forms_collection.find():
-        forms.append(form_schema_helper(form))
+        forms.append(form)
     return forms
 
 
