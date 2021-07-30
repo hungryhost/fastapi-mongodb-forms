@@ -7,7 +7,8 @@ import operator
 
 async def get_form_by_fields(requested: dict) -> Union[None, dict]:
 	forms = await retrieve_form_by_fields(list(requested.keys()))
-	print(retrieve_forms())
+	multiple_forms = retrieve_forms()
+	print(multiple_forms)
 	if not forms:
 		return None
 	evaluated_forms = {}
