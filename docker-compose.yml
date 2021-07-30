@@ -27,8 +27,7 @@ services:
       - mongodb
     volumes:
       - ./mongo-seed:/mongo-seed
-    command:
-      /mongo-seed/import.sh
+    command: bash -c "mongoimport --host mongodb --db forms --collection form_collection --type json --file /mongo-seed/forms_collection.json --jsonArray"
 
 volumes:
   mongodb_data_container:
