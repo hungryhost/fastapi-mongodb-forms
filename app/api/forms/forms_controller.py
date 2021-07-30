@@ -1,12 +1,13 @@
 from typing import Union
 
-from models.crud import retrieve_form_by_fields
+from models.crud import retrieve_form_by_fields, retrieve_forms
 from .validators import is_email, is_date, is_phone
 import operator
 
 
 async def get_form_by_fields(requested: dict) -> Union[None, dict]:
 	forms = await retrieve_form_by_fields(list(requested.keys()))
+	print(retrieve_forms())
 	if not forms:
 		return None
 	evaluated_forms = {}
