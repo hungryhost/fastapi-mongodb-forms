@@ -8,20 +8,27 @@ services:
       - '127.0.0.1:8089:8089'
     env_file:
       - ./app/.env
-    command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8089"
+    command: bash -c "uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8089"
     volumes:
       - ./app/:/usr/src/app/
     depends_on:
-      - db
-  db:
-    image: mongo:latest
+      - mongodb
+  mongodb:
+    image: mongo:3.2.6
     env_file:
       - ./mongodb/.env
     ports:
       - 27017:27017
     volumes:
       - mongodb_data_container:/data/db
-
+  mongo_seed:
+    image: mongo:3.2.6
+    links:
+      - mongodb
+    volumes:
+      - ./mongo-seed:/mongo-seed
+    command:
+      /mongo-seed/import.sh
 
 volumes:
   postgres_data:
