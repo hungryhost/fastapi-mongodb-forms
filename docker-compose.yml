@@ -31,4 +31,4 @@ services:
       /mongo-seed/import.sh
 
 volumes:
-  postgres_data:
+  mongodb_data_container:
