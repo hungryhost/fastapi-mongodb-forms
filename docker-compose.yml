@@ -3,7 +3,7 @@ version: '3'
 services:
   forms_app:
     build: ./app
-    container_name: api_gateway
+    container_name: forms_app
     ports:
       - '127.0.0.1:8089:8089'
     env_file:
